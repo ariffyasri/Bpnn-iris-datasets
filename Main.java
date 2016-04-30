@@ -9,5 +9,4 @@ public class Main {
       double numberOfClasses = 3.0;
       bp.bpnntesting("testing.txt","weightraining.txt",numberOfClasses);
    }
-   
 }
