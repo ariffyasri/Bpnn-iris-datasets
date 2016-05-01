@@ -1,4 +1,4 @@
-# Backpropogation-iris-datasets
+# Backpropogation Neural Network for iris dataset
 
 This artificial neural network program only suitable for [iris-datasets](http://archive.ics.uci.edu/ml/datasets/Iris).
 
