@@ -17,15 +17,15 @@ public class Main {
       Backpropogation bp = new Backpropogation();
       
       bp.inputByFile("training-dataset.csv",learningRate,numberOfEpoch);
-      bp.bpnntraining();
+      //bp.bpnntraining();
       //to train the datasets, need to comment bp.bpnntesting first,
       //then run the program
-      //training dataset - iris - normalize.csv
+      //training dataset - training-dataset.csv
       
       
       bp.bpnntesting("testing-dataset.csv","weight-training.txt",numberOfClasses);
       //to test the datasets, need to comment bp.bpnntraining first,
       //then run the program
-      //testing dataset = testing.txt
+      //testing dataset = testing-dataset.csv
    }
 }

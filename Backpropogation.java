@@ -300,6 +300,7 @@ class Backpropogation {
 			int incorrectnessIrisSetosa = 0;
 			int incorrectnessIrisVersicolour = 0;
 			int incorrectnessIrisVirginica = 0;
+			int confusionMatrix[][] = new int[(int)numberOfClasses][(int)numberOfClasses];
 
 			for(int v=0;v<numberOfInstances;v++) {
 				yInput = new double[numberOfHiddenNode];
@@ -344,9 +345,16 @@ class Backpropogation {
 						if(0.33 == outputNode[v]) {
 							//System.out.println("Correctness : Correct");
 							correctnessIrisSetosa++;
+							confusionMatrix[0][0]++;
 						}
 						else {
 							//System.out.println("Correctness : Not Correct");
+							if(outputNode[v] == 0.67) {
+								confusionMatrix[1][0]++;
+							}
+							else if(outputNode[v] == 1.0) {
+								confusionMatrix[2][0]++;
+							}
 							incorrectnessIrisSetosa++;
 						}
 						//System.out.println("Expected output : "+outputNode[v]);
@@ -357,9 +365,16 @@ class Backpropogation {
 						if(0.67 == outputNode[v]) {
 							//System.out.println("Correctness : Correct");
 							correctnessIrisVersicolour++;
+							confusionMatrix[1][1]++;
 						}
 						else {
 							//System.out.println("Correctness : Not Correct");
+							if(outputNode[v] == 0.33) {
+								confusionMatrix[0][1]++;
+							}
+							else if(outputNode[v] == 1.0) {
+								confusionMatrix[2][1]++;
+							}
 							incorrectnessIrisVersicolour++;
 						}
 						//System.out.println("Expected output : "+outputNode[v]);
@@ -370,23 +385,53 @@ class Backpropogation {
 						if(1.0 == outputNode[v]) {
 							//System.out.println("Correctness : Correct");
 							correctnessIrisVirginica++;
+							confusionMatrix[2][2]++;
 						}
 						else {
 							//System.out.println("Correctness : Not Correct");
+							if(outputNode[v] == 0.67) {
+								confusionMatrix[1][2]++;
+							}
+							else if(outputNode[v] == 0.33) {
+								confusionMatrix[0][2]++;
+							}
 							incorrectnessIrisVirginica++;
 						}
 						//System.out.println("Expected output : "+outputNode[v]);
 					}
 				}       
 			}
-			System.out.println("a - Iris-Setosa\nb - Iris-Versicolour\nc - Iris-Virginica");
+			System.out.println("===============================================");
+			System.out.println("Confusion Matrix");
+			System.out.println("===============================================");
+			System.out.println("a\tb\tc");
+			for(int i=0;i<((int)numberOfClasses);i++) {
+				for(int y=0;y<numberOfClasses;y++) {
+					System.out.print(confusionMatrix[i][y]+"\t");
+				}
+				switch(i) {
+					case 0:
+						System.out.print("a - Iris-Setosa");
+						break;
+					case 1:
+						System.out.print("b - Iris Versicolour");
+						break;
+					case 2:
+						System.out.print("c - Iris-Virginica");
+						break;
+				}
+				System.out.println();
+			}
+
+
+			System.out.println("===============================================");
 			//for()
 			double correctness = correctnessIrisVirginica + correctnessIrisVersicolour + correctnessIrisSetosa;
 			double CorrectnessPercent = (correctness/(double)numberOfInstances)*100;
 			double NotCorrectnessPercent = 100 - CorrectnessPercent;
 			DecimalFormat df = new DecimalFormat("0.##");
-			System.out.println("Correctness percentage : "+df.format(CorrectnessPercent));
-			System.out.println("Incorrectness percentage : "+df.format(NotCorrectnessPercent));
+			System.out.println("Correctly Classified Instances\t:"+(int)correctness+"\t"+df.format(CorrectnessPercent)+"%");
+			System.out.println("Inorrectly Classified Instances\t:"+(numberOfInstances-(int)correctness)+"\t"+df.format(NotCorrectnessPercent)+"%");
 		}
 		catch(FileNotFoundException fnfe) {
 			System.out.println(fnfe.getMessage());
