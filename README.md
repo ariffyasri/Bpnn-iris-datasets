@@ -45,3 +45,6 @@ Testing process :
 2. run the program
 
 **Backpropogation.java**
+
+#Author
+Muhammad Ariff Bin Yasri
