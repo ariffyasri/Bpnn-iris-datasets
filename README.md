@@ -25,8 +25,10 @@ There are 3 outputs that will be classify which are :
 
 
 #How to use this program?
-Main.java
-- Main function where need to state your :
+*Main.java
+
+Main function where need to state your :
+
 * learning rate
 * number of epoch
 * number of classes - you can ignore this since this is static, unless you change the dataset
@@ -43,3 +45,5 @@ Testing process :
 1. need to "comment" the bpnntraining like picture below
 ![alt-tag](http://i.imgur.com/iohG4sT.png)
 2. run the program
+
+*Backpropogation.java
