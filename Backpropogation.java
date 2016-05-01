@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-
+import java.text.*;
 class Backpropogation {
 	private int numberOfInput;
 	private int numberOfHiddenLayer;
@@ -289,7 +289,18 @@ class Backpropogation {
 				}
 				count++;
 			}
-			
+			/*
+				-- Iris Setosa
+				-- Iris Versicolour
+				-- Iris Virginica
+			*/
+			int correctnessIrisSetosa = 0;
+			int correctnessIrisVersicolour = 0;
+			int correctnessIrisVirginica = 0;
+			int incorrectnessIrisSetosa = 0;
+			int incorrectnessIrisVersicolour = 0;
+			int incorrectnessIrisVirginica = 0;
+
 			for(int v=0;v<numberOfInstances;v++) {
 				yInput = new double[numberOfHiddenNode];
 				yExp = new double[numberOfHiddenNode];
@@ -324,26 +335,56 @@ class Backpropogation {
 						zInput[x] += yExp[y] * weightZ[x][y];
 					}
 				}
-			//Calculate zExp using sigmoid function
+					//Calculate zExp using sigmoid function
 				for(x=0;x<numberOfOutput;x++) {
 					zExp[x] = 1/(1+Math.exp(-zInput[x]));
 					if(Math.abs(0.33-zExp[x]) <= benchmark) {
 						//System.out.println("error : "+ Math.abs(outputNode[v]-zExp[x]));
 						System.out.println("Testing output : 0.33");
+						if(0.33 == outputNode[v]) {
+							//System.out.println("Correctness : Correct");
+							correctnessIrisSetosa++;
+						}
+						else {
+							//System.out.println("Correctness : Not Correct");
+							incorrectnessIrisSetosa++;
+						}
 						//System.out.println("Expected output : "+outputNode[v]);
 					}
 					else if(Math.abs(0.67-zExp[x]) <= benchmark) {
 						//System.out.println("error : "+ Math.abs(outputNode[v]-zExp[x]));
 						System.out.println("Testing output : 0.67");
+						if(0.67 == outputNode[v]) {
+							//System.out.println("Correctness : Correct");
+							correctnessIrisVersicolour++;
+						}
+						else {
+							//System.out.println("Correctness : Not Correct");
+							incorrectnessIrisVersicolour++;
+						}
 						//System.out.println("Expected output : "+outputNode[v]);
 					}
 					else if(Math.abs(1.0-zExp[x]) <= benchmark) {
 						//System.out.println("error : "+ Math.abs(outputNode[v]-zExp[x]));
 						System.out.println("Testing output : 1.0");
+						if(1.0 == outputNode[v]) {
+							//System.out.println("Correctness : Correct");
+							correctnessIrisVirginica++;
+						}
+						else {
+							//System.out.println("Correctness : Not Correct");
+							incorrectnessIrisVirginica++;
+						}
 						//System.out.println("Expected output : "+outputNode[v]);
 					}
 				}       
 			}
+			double correctness = correctnessIrisVirginica + correctnessIrisVersicolour + correctnessIrisSetosa;
+			double CorrectnessPercent = (correctness/(double)numberOfInstances)*100;
+			double NotCorrectnessPercent = 100 - CorrectnessPercent;
+			DecimalFormat df = new DecimalFormat("0.##");
+			System.out.println("Correctness percentage : "+df.format(CorrectnessPercent));
+			System.out.println("Incorrectness percentage : "+df.format(NotCorrectnessPercent));
 		}
 		catch(FileNotFoundException fnfe) {
 			System.out.println(fnfe.getMessage());
