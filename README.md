@@ -2,9 +2,7 @@
 
 This artificial neural network program only suitable for [iris-datasets](http://archive.ics.uci.edu/ml/datasets/Iris).
 
-The dataset used in this program has been normalized using min-max normalization.
-
-![alt-tag](http://i.imgur.com/jmRFSAL.png)
+The dataset used in this program has been normalized.
 
 #Input
 There are 4 inputs/independant variables which are :
