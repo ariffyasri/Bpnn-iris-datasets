@@ -78,7 +78,7 @@ class Backpropogation {
 			weightY = new double[numberOfHiddenNode][numberOfInput];
 			weightZ = new double[numberOfOutput][numberOfHiddenNode];
 			
-			File file = new File("first weight.txt");
+			File file = new File("initial-weight.txt");
 			if(file.exists()) {
 				br = new BufferedReader(new FileReader(file));
 				line = "";
@@ -218,7 +218,7 @@ class Backpropogation {
 			}
 		}
 		try {
-			FileWriter fw = new FileWriter("weightraining.txt", true);
+			FileWriter fw = new FileWriter("weight-training.txt", true);
 			PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
 			
 			//first layer y
@@ -340,7 +340,7 @@ class Backpropogation {
 					zExp[x] = 1/(1+Math.exp(-zInput[x]));
 					if(Math.abs(0.33-zExp[x]) <= benchmark) {
 						//System.out.println("error : "+ Math.abs(outputNode[v]-zExp[x]));
-						System.out.println("Testing output : 0.33");
+						//System.out.println("Testing output : 0.33");
 						if(0.33 == outputNode[v]) {
 							//System.out.println("Correctness : Correct");
 							correctnessIrisSetosa++;
@@ -353,7 +353,7 @@ class Backpropogation {
 					}
 					else if(Math.abs(0.67-zExp[x]) <= benchmark) {
 						//System.out.println("error : "+ Math.abs(outputNode[v]-zExp[x]));
-						System.out.println("Testing output : 0.67");
+						//System.out.println("Testing output : 0.67");
 						if(0.67 == outputNode[v]) {
 							//System.out.println("Correctness : Correct");
 							correctnessIrisVersicolour++;
@@ -366,7 +366,7 @@ class Backpropogation {
 					}
 					else if(Math.abs(1.0-zExp[x]) <= benchmark) {
 						//System.out.println("error : "+ Math.abs(outputNode[v]-zExp[x]));
-						System.out.println("Testing output : 1.0");
+						//System.out.println("Testing output : 1.0");
 						if(1.0 == outputNode[v]) {
 							//System.out.println("Correctness : Correct");
 							correctnessIrisVirginica++;
@@ -379,6 +379,8 @@ class Backpropogation {
 					}
 				}       
 			}
+			System.out.println("a - Iris-Setosa\nb - Iris-Versicolour\nc - Iris-Virginica");
+			//for()
 			double correctness = correctnessIrisVirginica + correctnessIrisVersicolour + correctnessIrisSetosa;
 			double CorrectnessPercent = (correctness/(double)numberOfInstances)*100;
 			double NotCorrectnessPercent = 100 - CorrectnessPercent;
