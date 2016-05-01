@@ -23,7 +23,7 @@ public class Main {
       //training dataset - iris - normalize.csv
       
       
-      bp.bpnntesting("testing-dataset.txt","weight-training.txt",numberOfClasses);
+      bp.bpnntesting("testing-dataset.csv","weight-training.txt",numberOfClasses);
       //to test the datasets, need to comment bp.bpnntraining first,
       //then run the program
       //testing dataset = testing.txt
