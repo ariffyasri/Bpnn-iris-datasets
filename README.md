@@ -25,7 +25,7 @@ There are 3 outputs that will be classify which are :
 
 
 #How to use this program?
-*Main.java
+**Main.java**
 
 Main function where need to state your :
 
@@ -46,4 +46,4 @@ Testing process :
 ![alt-tag](http://i.imgur.com/iohG4sT.png)
 2. run the program
 
-*Backpropogation.java
+**Backpropogation.java**
