@@ -218,6 +218,13 @@ class Backpropogation {
 			}
 		}
 		try {
+         	//clear the previous weight training
+			FileWriter cw = new FileWriter("weight-training.txt");
+			BufferedWriter clear = new BufferedWriter(cw);
+			clear.write("");
+			clear.close();
+         	
+         	//write new weight training
 			FileWriter fw = new FileWriter("weight-training.txt", true);
 			PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
 			
