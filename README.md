@@ -31,18 +31,6 @@ Main function where need to state your :
 * number of epoch
 * number of classes - you can ignore this since this is static, unless you change the dataset
 
-Training process
-
-1. need to "comment" the bpnntesting like picture below
-![alt-tag](http://i.imgur.com/AN9ooST.png)
-2. run the program
-3. then erase the previous weight training in weight-training.txt
-
-Testing process : 
-
-1. need to "comment" the bpnntraining like picture below
-![alt-tag](http://i.imgur.com/iohG4sT.png)
-2. run the program
 
 **Backpropogation.java**
 
