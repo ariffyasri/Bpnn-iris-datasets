@@ -17,6 +17,8 @@ class Backpropogation {
 	double yExp[];
 	double zInput[];
 	double zExp[];
+   double totalepoch;
+   double total;
 	
 	private double [][] inputNode;
 	private double [][] hiddenNode;
@@ -41,6 +43,8 @@ class Backpropogation {
 		weightY = new double[200][200];
 		weightZ = new double[200][200];
 		error = new double[200];
+      total = 0.0;
+      totalepoch = 0.0;
 	}
 	
 	void inputByFile(String fileName, double learningRate, int numberOfEpoch) {
@@ -175,7 +179,8 @@ class Backpropogation {
 		}
 		
 		//Calculate error
-		error[v] = (outputNode[v] - zExp[0])*(zExp[0])*(1-zExp[0]);
+		error[v] = (outputNode[v] - zExp[0])*(zExp[0])*(1-zExp [0]);
+      this.totalepoch += error[v];
 		//System.out.println(error[v]);
 	}
 	
@@ -216,7 +221,13 @@ class Backpropogation {
 				feedforward(x);
 				updateError(x);
 			}
+         System.out.println("Epoch "+(w+1)+":"+totalepoch);
+         total += Math.pow(totalepoch,2);
+         totalepoch = 0.0;
 		}
+      this.total /= (numberofepoch*numberOfInstances);
+      DecimalFormat df = new DecimalFormat("0.######");
+      System.out.println("Means Square Error : "+df.format(total));
 		try {
          	//clear the previous weight training
 			FileWriter cw = new FileWriter("weight-training.txt");
@@ -343,9 +354,12 @@ class Backpropogation {
 						zInput[x] += yExp[y] * weightZ[x][y];
 					}
 				}
+            
 					//Calculate zExp using sigmoid function
-				for(x=0;x<numberOfOutput;x++) {
+				for(x=0;x<numberOfOutput;x++) {   
+               
 					zExp[x] = 1/(1+Math.exp(-zInput[x]));
+               System.out.println(zExp[x]);
 					if(Math.abs(0.33-zExp[x]) <= benchmark) {
 						//System.out.println("error : "+ Math.abs(outputNode[v]-zExp[x]));
 						//System.out.println("Testing output : 0.33");
