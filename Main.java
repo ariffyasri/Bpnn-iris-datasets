@@ -7,7 +7,7 @@ public class Main {
 		double learningRate = 0.5;
 		//range of learning rate is between 0.1 - 1.0
 
-		int numberOfEpoch = 10000; 
+		int numberOfEpoch = 500; 
 		//number of iteration, the more the iteration, the less error will become
 
 		double numberOfClasses = 3.0;

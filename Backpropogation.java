@@ -216,18 +216,25 @@ class Backpropogation {
 	}
 	
 	void bpnntraining() {
+      int numberofepochformse = 0;
 		for(int w=0;w<numberofepoch;w++) {
 			for(int x=0;x<numberOfInstances;x++) {
 				feedforward(x);
 				updateError(x);
 			}
-         System.out.println("Epoch "+(w+1)+":"+totalepoch);
+         //System.out.println("Epoch "+(w+1)+":"+totalepoch);
          total += Math.pow(totalepoch,2);
+         double totalinepoch = total/(w*numberOfInstances);
+         System.out.println("MSE in epoch "+(w+1)+":"+totalinepoch);
+         if(totalinepoch <= 0.0005) {
+            numberofepochformse = w;
+            break;
+         }
          totalepoch = 0.0;
 		}
-      this.total /= (numberofepoch*numberOfInstances);
+      this.total /= (numberofepochformse*numberOfInstances);
       DecimalFormat df = new DecimalFormat("0.######");
-      System.out.println("Means Square Error : "+df.format(total));
+      System.out.println("Means Squared Error : "+df.format(total));
 		try {
          	//clear the previous weight training
 			FileWriter cw = new FileWriter("weight-training.txt");
